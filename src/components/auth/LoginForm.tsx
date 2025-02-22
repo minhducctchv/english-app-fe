@@ -37,8 +37,6 @@ const LoginForm: React.FC = () => {
       StorageHelper.remove(VOC_AI_USER_INFO);
       StorageHelper.remove(VOC_AI_ACCESS_TOKEN);
       StorageHelper.remove(VOC_AI_REFRESH_TOKEN);
-      console.error("take me error", error);
-      message.success("Login success");
       message.error(error);
     } finally {
       setLoadingSubmit(false);

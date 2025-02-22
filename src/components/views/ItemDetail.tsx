@@ -47,9 +47,6 @@ const ItemDetail = forwardRef((props: IProps, ref) => {
         ...vocaClone,
         [field]: value,
       };
-      console.log('field', field)
-      console.log('value', value)
-      console.log('updateVoca', updatedVoca)
       setVoca(updatedVoca);
       updateItem(updatedVoca);
     }

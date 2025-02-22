@@ -98,12 +98,14 @@ export default function Learn() {
 
   return (
     <Spin spinning={isLoading || isFetching}>
-      <Switch
-        checkedChildren="TODAY"
-        unCheckedChildren="PAST"
-        checked={isToday}
-        onChange={setIsToday}
-      />
+      <div className="mb-4">
+        <Switch
+          checkedChildren="TODAY"
+          unCheckedChildren="PAST"
+          checked={isToday}
+          onChange={setIsToday}
+        />
+      </div>
       <RIf
         condition={data?.pagination.total > 0}
         result1={

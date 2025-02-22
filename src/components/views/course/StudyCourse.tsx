@@ -61,6 +61,12 @@ export default function StudyCourse() {
     }
   };
 
+  const showDetail = (item: ICourse) => {
+    if (detailRef?.current) {
+      detailRef.current.showModal(undefined, item);
+    }
+  };
+
   const handleTableChange = (newPagination: TablePaginationConfig) => {
     setFilter((val) => ({
       ...val,
@@ -84,6 +90,9 @@ export default function StudyCourse() {
       title: "Title",
       dataIndex: "title",
       key: "title",
+      render: (title, record) => (
+        <a onClick={() => showDetail(record)}>{title}</a>
+      ),
     },
     {
       title: "Count Study",

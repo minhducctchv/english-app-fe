@@ -28,7 +28,11 @@ const items: TabsProps["items"] = [
 ];
 
 const SelectionDrawer = () => {
-  return <Tabs items={items} activeKey={"learn"} />;
+  return (
+    <div className="h-full w-full !p-4">
+      <Tabs items={items} defaultActiveKey={"learn"} />
+    </div>
+  );
 };
 
 export default SelectionDrawer;
