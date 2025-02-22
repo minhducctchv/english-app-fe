@@ -1,3 +1,5 @@
+import { StyleProvider } from "@ant-design/cssinjs";
+import { ConfigProvider } from "antd";
 import React from "react";
 import AppProvider, { useAppContext } from "../../context/AppProvider";
 import ReactQueryProvider from "../../context/ReactQueryProvider";
@@ -6,13 +8,17 @@ import AppDrawer from "../drawer/AppDrawer";
 
 export default function Container() {
   return (
-    <ReactQueryProvider>
-      <AppProvider>
-        <InterContainer>
-          <AppDrawer />
-        </InterContainer>
-      </AppProvider>
-    </ReactQueryProvider>
+    <StyleProvider layer>
+      <ConfigProvider>
+        <ReactQueryProvider>
+          <AppProvider>
+            <InterContainer>
+              <AppDrawer />
+            </InterContainer>
+          </AppProvider>
+        </ReactQueryProvider>
+      </ConfigProvider>
+    </StyleProvider>
   );
 }
 

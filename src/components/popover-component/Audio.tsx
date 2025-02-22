@@ -1,4 +1,8 @@
-import { CheckOutlined, PlayCircleOutlined } from "@ant-design/icons";
+import {
+  CheckOutlined,
+  PlayCircleOutlined,
+  FastBackwardOutlined,
+} from "@ant-design/icons";
 import { Button } from "antd";
 import React, { useEffect, useMemo, useState } from "react";
 import { CallDictionaryService } from "../../hook/api/CallDictionaryService";
@@ -31,18 +35,38 @@ export default function BtnAudio({ voca, audioUrl }: IProps) {
     }
   }, [audioSrc]);
 
-  const playAudio = () => {
-    audio?.play();
+  const playAudio = (speed: number = 1) => {
+    if (audio) {
+      audio.playbackRate = speed;
+      audio.currentTime = 0; // Phát từ đầu
+      audio.play();
+    }
   };
 
   return (
-    <div className="flex justify-center items-center gap-3">
+    <div className="flex justify-center items-center gap-4">
+      <Button
+        icon={<FastBackwardOutlined />}
+        onClick={() => playAudio(0.75)}
+        disabled={!audio}
+      >
+        0.75x
+      </Button>
       <Button
         shape="circle"
+        size="large"
+        type="primary"
         icon={<PlayCircleOutlined />}
-        onClick={playAudio}
+        onClick={() => playAudio(1)}
         disabled={!audio}
       />
+      <Button
+        icon={<FastBackwardOutlined />}
+        onClick={() => playAudio(0.5)}
+        disabled={!audio}
+      >
+        0.5x
+      </Button>
       {!!audioUrl?.length && <CheckOutlined />}
     </div>
   );

@@ -89,6 +89,7 @@ const WordGuessingGame: React.FC<WordGuessingGameProps> = ({
     shuffledWord.split("")
   );
   const [resultMessage, setResultMessage] = useState<string | null>(null);
+  const [showLevel, setShowLevel] = useState<number>(0);
 
   useEffect(() => {
     const newShuffledWord = shuffleWord(word);
@@ -169,33 +170,68 @@ const WordGuessingGame: React.FC<WordGuessingGameProps> = ({
         Guess the Word :D
       </h2>
 
-      <RIf
-        condition={isSuccess}
-        result1={
-          <div>
-            <Row label={voca.vocabulary} value={voca.translatedVi} />
-            <Row label="Definition (EN)" value={voca.definitionEn} />
-            <Row label="Definition (VI)" value={voca.definitionVi} />
-            <Row label="Example Sentences (EN)" value={voca.exampleSentences} />
-            <Row
-              label="Example Sentences (VI)"
-              value={voca.exampleSentencesVi}
-            />
-          </div>
-        }
-      />
-
       {/* Show Result Message */}
       {resultMessage && (
         <ResultMessage success={isSuccess}>{resultMessage}</ResultMessage>
       )}
 
-      {/* Show Result */}
-      {isSuccess && (
-        <div className="text-center text-2xl text-blue-800 m-4">
-          {voca.originalVocabulary}
-        </div>
-      )}
+      <div className="text-center text-lg mb-4 text-green-700">
+        {voca.pronunciation}
+      </div>
+
+      <div className="flex items-center justify-center">
+        <BtnAudio
+          voca={voca.originalVocabularyBackup}
+          audioUrl={voca.audioUrl}
+        />
+      </div>
+
+      <RIf
+        condition={isSuccess}
+        result1={
+          <div>
+            <div className="text-center my-4">
+              <span className="text-2xl mr-2">{voca.originalVocabulary}</span>
+              <span className="font-bold italic">({voca.partsOfSpeech})</span>
+            </div>
+            <div
+              className="text-lg text-blue-700 cursor-pointer border border-dashed border-blue-700 p-2 rounded-lg shadow-md my-2"
+              onClick={() => setShowLevel(1)}
+            >
+              {voca.exampleSentences}
+            </div>
+            {showLevel >= 1 && (
+              <div
+                className="text-lg text-green-700 cursor-pointer border border-dashed border-green-700 p-2 rounded-lg shadow-md my-2"
+                onClick={() => setShowLevel(2)}
+              >
+                {voca.definitionEn}
+              </div>
+            )}
+            {showLevel >= 2 && (
+              <div
+                className="text-lg text-orange-700 cursor-pointer border border-dashed border-orange-700 p-2 rounded-lg shadow-md my-2"
+                onClick={() => setShowLevel(3)}
+              >
+                {voca.definitionVi}
+              </div>
+            )}
+            {showLevel >= 3 && (
+              <div
+                className="text-lg text-red-700 cursor-pointer border border-dashed border-red-700 p-2 rounded-lg shadow-md my-2"
+                onClick={() => setShowLevel(4)}
+              >
+                {voca.exampleSentencesVi}
+              </div>
+            )}
+            {showLevel >= 4 && (
+              <div className="text-lg text-purple-700 cursor-pointer border border-dashed border-purple-700 p-2 rounded-lg shadow-md my-2">
+                {voca.vocabulary}: {voca.translatedVi}
+              </div>
+            )}
+          </div>
+        }
+      />
 
       {/* Answer Container */}
       <WordContainer>
@@ -222,16 +258,6 @@ const WordGuessingGame: React.FC<WordGuessingGameProps> = ({
           </LetterBox>
         ))}
       </WordContainer>
-
-      <div className="flex items-center justify-center">
-        <BtnAudio
-          voca={voca.originalVocabularyBackup}
-          audioUrl={voca.audioUrl}
-        />
-      </div>
-      <div className="text-center font-bold italic">({voca.partsOfSpeech})</div>
-      <div className="text-center">{voca.pronunciation}</div>
-      <Row label="Definition (EN)" value={voca.definitionEn} />
     </div>
   );
 };
