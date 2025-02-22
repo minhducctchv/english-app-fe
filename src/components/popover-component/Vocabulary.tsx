@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import { IVocabulary } from "../../types/types";
-import { ObjectHelper } from "../../helper/object.helper";
-import { Button, Collapse, Input, message } from "antd";
-import useVocabularyApi from "../../hook/api/useVocabularyApi";
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Collapse, Input, message } from "antd";
+import React, { useEffect, useRef, useState } from "react";
+import { ObjectHelper } from "../../helper/object.helper";
+import useVocabularyApi from "../../hook/api/useVocabularyApi";
+import { IVocabulary } from "../../types/types";
 import BtnAudio from "./Audio";
 
 const Row = ({
@@ -16,7 +16,7 @@ const Row = ({
   label: string;
   value: string;
   field: keyof IVocabulary;
-  updateVoca?: Function;
+  updateVoca?: (field: keyof IVocabulary, value?: string) => void;
   nodeValue?: React.ReactNode;
 }) => {
   const [isEdit, setIsEdit] = React.useState<boolean>(false);
@@ -92,8 +92,8 @@ export default function Vocabulary({
   showAddBtn?: boolean;
   showDeleteBtn?: boolean;
   showUpdateBtn?: boolean;
-  reloadListFn?: Function;
-  updateVoca?: Function;
+  reloadListFn?: () => void;
+  updateVoca?: (field: keyof IVocabulary, value?: string) => void;
   childClassName?: string;
   defaultShowSentenceExample?: boolean;
   showTime?: boolean;
@@ -127,7 +127,9 @@ export default function Vocabulary({
       .then(() => {
         message.success("Add vocabulary success");
         setDisableAddBtn(true);
-        reloadListFn && reloadListFn();
+        if (reloadListFn) {
+          reloadListFn();
+        }
       })
       .catch((err: any) => {
         message.error(err.message);
@@ -143,7 +145,9 @@ export default function Vocabulary({
     deleteItem(voca._id)
       .then(() => {
         message.success("Delete vocabulary success");
-        reloadListFn && reloadListFn();
+        if (reloadListFn) {
+          reloadListFn();
+        }
       })
       .catch((err: any) => {
         message.error(err.message);
@@ -160,7 +164,9 @@ export default function Vocabulary({
     update(voca._id, voca)
       .then(() => {
         message.success("Update vocabulary success");
-        reloadListFn && reloadListFn();
+        if (reloadListFn) {
+          reloadListFn();
+        }
       })
       .catch((err: any) => {
         message.error(err.message);
@@ -295,7 +301,7 @@ export default function Vocabulary({
           <Button
             danger
             type="primary"
-            loading={loadingDeleteBtn}
+            loading={loadingUpdateBtn}
             onClick={() => handleUpdate()}
             shape="circle"
             size="small"

@@ -1,10 +1,10 @@
 import {
   CheckOutlined,
-  PlayCircleOutlined,
   FastBackwardOutlined,
+  PlayCircleOutlined,
 } from "@ant-design/icons";
 import { Button } from "antd";
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CallDictionaryService } from "../../hook/api/CallDictionaryService";
 
 interface IProps {

@@ -12,7 +12,7 @@ export type IDrawerComponent =
 
 export interface IContext {
   userInfo?: IUser;
-  setUserInfo: (userInfo: IUser) => void;
+  setUserInfo: (userInfo?: IUser) => void;
   modalWidth: string;
 }
 

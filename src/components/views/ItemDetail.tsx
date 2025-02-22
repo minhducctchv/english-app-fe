@@ -1,5 +1,5 @@
 import { message, Modal } from "antd";
-import React, { forwardRef, useImperativeHandle, useState } from "react";
+import { forwardRef, useImperativeHandle, useState } from "react";
 import useVocabularyApi from "../../hook/api/useVocabularyApi";
 import { IVocabulary } from "../../types/types";
 import Vocabulary from "../popover-component/Vocabulary";
@@ -40,7 +40,7 @@ const ItemDetail = forwardRef((props: IProps, ref) => {
       });
   };
 
-  const updateVoca = (field: keyof IVocabulary, value: string) => {
+  const updateVoca = (field: keyof IVocabulary, value?: string) => {
     if (voca) {
       const vocaClone = structuredClone(voca);
       const updatedVoca = {

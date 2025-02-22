@@ -4,15 +4,6 @@ import { IVocabulary } from "../../types/types";
 import BtnAudio from "../popover-component/Audio";
 import RIf from "../common/RIf";
 
-function Row({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <span className="font-bold mr-1">{label}:</span>
-      <span>{value}</span>
-    </div>
-  );
-}
-
 interface WordGuessingGameProps {
   voca: IVocabulary;
   isSuccess: boolean;
