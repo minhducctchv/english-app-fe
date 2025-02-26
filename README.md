@@ -1,5 +1,7 @@
 List 20 IT-related vocabulary words that are in the Oxford dictionary in the form of a JSON array as follows:
 
+List 20 IT-related vocabulary words that appear in the Oxford dictionary under the letter 'A' in the form of a JSON array as follows:
+
 ```
 [
   {
