@@ -24,6 +24,7 @@ export default function BtnAudio({ voca, audioUrl }: IProps) {
           setAudioSrc(aud);
         })
         .catch((err: any) => {
+          setAudioSrc(undefined);
           console.log(err.message + ": " + voca);
         });
     }
