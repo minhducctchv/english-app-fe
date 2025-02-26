@@ -60,6 +60,7 @@ export default function Learn() {
   const [loadingUpdate, setLoadingUpdate] = useState(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [isChiu, setIsChiu] = useState<boolean>(false);
+  const [showLevel, setShowLevel] = useState<number>(0);
 
   const { data, isLoading, isFetching, refetch } = useQuery({
     queryKey: ["get-vocas", isToday],
@@ -75,6 +76,7 @@ export default function Learn() {
   useEffect(() => {
     setIsChiu(false);
     setIsSuccess(false);
+    setShowLevel(0);
   }, [data?.data]);
 
   const updateVocaLearn = (
@@ -114,6 +116,8 @@ export default function Learn() {
               voca={data?.data[0] ?? {}}
               isSuccess={isSuccess}
               setIsSuccess={setIsSuccess}
+              showLevel={showLevel}
+              setShowLevel={setShowLevel}
             />
             <Spin spinning={loadingUpdate}>
               <div className="flex items-center justify-center gap-1">

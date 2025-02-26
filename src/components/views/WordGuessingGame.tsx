@@ -8,6 +8,8 @@ interface WordGuessingGameProps {
   voca: IVocabulary;
   isSuccess: boolean;
   setIsSuccess: React.Dispatch<React.SetStateAction<boolean>>;
+  showLevel: number;
+  setShowLevel: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const WordContainer = styled.div`
@@ -65,6 +67,8 @@ const WordGuessingGame: React.FC<WordGuessingGameProps> = ({
   voca,
   isSuccess,
   setIsSuccess,
+  showLevel,
+  setShowLevel,
 }) => {
   const word = voca?.originalVocabulary;
   const shuffleWord = (word: string) => {
@@ -80,7 +84,6 @@ const WordGuessingGame: React.FC<WordGuessingGameProps> = ({
     shuffledWord.split("")
   );
   const [resultMessage, setResultMessage] = useState<string | null>(null);
-  const [showLevel, setShowLevel] = useState<number>(0);
 
   useEffect(() => {
     const newShuffledWord = shuffleWord(word);
