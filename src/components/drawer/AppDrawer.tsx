@@ -3,6 +3,8 @@ import Learn from "../views/Learn";
 import ListCrud from "../views/ListCrud";
 import ListCourse from "../views/course/ListCourse";
 import StudyCourse from "../views/course/StudyCourse";
+import ListEconomy from "../views/economy/ListEconomy";
+import ChartEconomy from "../views/economy/ChartEconomy";
 
 const items: TabsProps["items"] = [
   {
@@ -24,6 +26,16 @@ const items: TabsProps["items"] = [
     key: "study_course",
     label: "STUDY COURSE",
     children: <StudyCourse />,
+  },
+  {
+    key: "economy",
+    label: "ECONOMY",
+    children: <ListEconomy />,
+  },
+  {
+    key: "chart_economy",
+    label: "CHART ECONOMY",
+    children: <ChartEconomy />,
   },
 ];
 

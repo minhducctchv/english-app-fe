@@ -8,7 +8,9 @@ export type IDrawerComponent =
   | "learn"
   | "enter_topic"
   | "course_crud"
-  | "study_course";
+  | "study_course"
+  | "chart_economy"
+  | "economy";
 
 export interface IContext {
   userInfo?: IUser;
