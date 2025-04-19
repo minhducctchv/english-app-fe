@@ -1,8 +1,7 @@
 import axios from "axios";
 import { StorageHelper } from "../helper/storage.helper";
 const url = "https://english-app-be.vercel.app";
-// const url2 = "https://learn-app-be.vercel.app";
-const url2 = "http://localhost:3000";
+const url2 = "https://learn-app-be.vercel.app";
 
 export const VOC_AI_ACCESS_TOKEN = "english-app-access";
 export const VOC_AI_REFRESH_TOKEN = "english-app-refresh";
