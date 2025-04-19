@@ -29,7 +29,7 @@ export default function ChartEconomy() {
     };
   }, [filter]);
 
-  const { data, isLoading, isFetching, refetch } = useQuery({
+  const { data, isLoading, isFetching } = useQuery({
     queryKey: ["economies-chart", convertedFilter],
     queryFn: () => getChartData(convertedFilter),
   });
