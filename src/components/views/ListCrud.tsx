@@ -1,4 +1,4 @@
-import { DeleteOutlined, EyeOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EyeOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Input, Table, message } from "antd";
 import { ColumnsType, TablePaginationConfig } from "antd/es/table";
 import { debounce } from "lodash";
@@ -11,6 +11,7 @@ import ConfirmBtn from "../common/ConfirmBtn";
 import BtnAudio from "../popover-component/Audio";
 import ItemDetail from "./ItemDetail";
 import { useQuery } from "@tanstack/react-query";
+import CreateVocabulary from "./CreateVocabolary";
 
 export default function ListCrud() {
   const { deleteItem } = useVocabularyApi();
@@ -26,6 +27,7 @@ export default function ListCrud() {
     queryFn: () => search(filter),
   });
   const detailRef = useRef<any>(null);
+  const createRef = useRef<any>(null);
 
   const showDetail = (item: IVocabulary) => {
     if (detailRef?.current) {
@@ -128,16 +130,31 @@ export default function ListCrud() {
     },
   ];
 
+  const createVocabulary = () => {
+    if (createRef?.current) {
+      createRef.current.showModal();
+    }
+  };
+
   return (
     <>
-      <Input
-        placeholder="Search by title"
-        onChange={(e) => debouncedOnChange(e.target.value)}
-        allowClear
-        showCount
-        maxLength={255}
-        className="w-1/2 mb-4"
-      />
+      <div className="flex justify-between">
+        <Input
+          placeholder="Search by title"
+          onChange={(e) => debouncedOnChange(e.target.value)}
+          allowClear
+          showCount
+          maxLength={255}
+          className="w-1/2 mb-4"
+        />
+        <Button
+          icon={<PlusOutlined />}
+          onClick={createVocabulary}
+          type="primary"
+        >
+          Create
+        </Button>
+      </div>
       <Table
         loading={isLoading || isFetching}
         columns={columns}
@@ -153,6 +170,7 @@ export default function ListCrud() {
         onChange={handleTableChange}
       />
       <ItemDetail reloadListFn={refetch} ref={detailRef} />
+      <CreateVocabulary reloadListFn={refetch} ref={createRef} />
     </>
   );
 }
