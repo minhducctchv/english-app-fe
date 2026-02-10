@@ -81,7 +81,7 @@ const WordGuessingGame: React.FC<WordGuessingGameProps> = ({
   const [shuffledWord, setShuffledWord] = useState<string>(shuffleWord(word));
   const [selectedLetters, setSelectedLetters] = useState<string[]>([]);
   const [remainingLetters, setRemainingLetters] = useState<string[]>(
-    shuffledWord.split("")
+    shuffledWord.split(""),
   );
   const [resultMessage, setResultMessage] = useState<string | null>(null);
 
@@ -160,10 +160,6 @@ const WordGuessingGame: React.FC<WordGuessingGameProps> = ({
 
   return (
     <div className="p-5 bg-gray-50 rounded-lg shadow-md mx-auto my-4 relative">
-      <h2 className="text-center text-2xl font-bold mb-5 text-blue-600">
-        Guess the Word :D
-      </h2>
-
       {/* Show Result Message */}
       {resultMessage && (
         <ResultMessage success={isSuccess}>{resultMessage}</ResultMessage>
