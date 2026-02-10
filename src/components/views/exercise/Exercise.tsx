@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import VocaExercise from "./voca/VocaExercise";
 import MeaningExercise from "./meaning/MeaningExercise";
 import { IVocabulary } from "../../../types/types";
+import TextToSpeech from "./tts/TextToSpeech";
 
 interface IProps {
   vocabulary: IVocabulary;
@@ -33,6 +34,9 @@ export default function Exercise({ vocabulary }: IProps) {
 
   return (
     <div className="md:max-w-1/2 flex flex-col gap-4 p-4 mx-auto border-2 border-gray-200 rounded-lg m-4">
+      <div className="flex justify-end">
+        <TextToSpeech text={vocabulary.exampleSentences} />
+      </div>
       <div>{getExrcise()}</div>
       {step !== "meaning" && <NextButton setStep={setStep} />}
     </div>
