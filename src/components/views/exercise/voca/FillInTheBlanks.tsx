@@ -25,7 +25,7 @@ export default function FillInTheBlanks({ context, text }: IProps) {
     // Replace the text in context with placeholder
     const blankContext = context.replace(
       new RegExp(text, "gi"),
-      "BLANK_PLACEHOLDER"
+      "BLANK_PLACEHOLDER",
     );
     setContextWithBlank(blankContext);
 
@@ -39,7 +39,6 @@ export default function FillInTheBlanks({ context, text }: IProps) {
   const handleInputChange = (index: number, value: string) => {
     if (value.length <= 1) {
       const newInputs = [...userInputs];
-      const oldValue = newInputs[index];
       newInputs[index] = value.toLowerCase();
       setUserInputs(newInputs);
 
@@ -67,13 +66,6 @@ export default function FillInTheBlanks({ context, text }: IProps) {
       const prevInput = document.getElementById(`input-${index - 1}`);
       prevInput?.focus();
     }
-  };
-
-  const handleSubmit = () => {
-    const userAnswer = getUserAnswer();
-    const correct = userAnswer.toLowerCase() === text.toLowerCase();
-    setIsCorrect(correct);
-    setShowAnswer(true);
   };
 
   const getUserAnswerFromInputs = (inputs: string[]) => {
