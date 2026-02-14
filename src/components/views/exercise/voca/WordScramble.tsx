@@ -69,6 +69,7 @@ export default function WordScramble({ text }: IProps) {
 
   // Check if answer is complete and correct
   useEffect(() => {
+    if (!text) return;
     const filledSlots = answerSlots.filter(
       (slot) => !slot.isEmpty && !slot.isSpace,
     );

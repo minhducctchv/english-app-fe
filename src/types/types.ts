@@ -60,13 +60,13 @@ export interface IApiVocabulary {
   };
 }
 
-export const mapApiToVoca = (apiVoca: IApiVocabulary): IVocabulary => {
+export const mapApiToVoca = (apiVoca: IApiVocabulary | any): IVocabulary => {
   return {
     ...apiVoca,
-    voca: apiVoca.vocabulary,
-    mean: apiVoca.translatedVi,
-    text: apiVoca.exampleSentences,
-    textMean: apiVoca.exampleSentencesVi,
+    voca: apiVoca.vocabulary || apiVoca.voca,
+    mean: apiVoca.translatedVi || apiVoca.mean,
+    text: apiVoca.exampleSentences || apiVoca.text,
+    textMean: apiVoca.exampleSentencesVi || apiVoca.textMean,
     partsOfSpeech: apiVoca.partsOfSpeech as IVocabulary["partsOfSpeech"],
   };
 };
