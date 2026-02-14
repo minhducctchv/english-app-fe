@@ -4,8 +4,8 @@ import { TextSchema } from "./jsonSchema";
 export interface IVocabulary {
   _id?: any;
   id?: string;
-  vocabulary: string;
-  translatedVi: string;
+  voca: string;
+  mean: string;
   partsOfSpeech:
     | "verb"
     | "noun"
@@ -19,12 +19,8 @@ export interface IVocabulary {
     | "determiner"
     | "other";
   pronunciation: string;
-  definitionEn: string;
-  definitionVi: string;
-  exampleSentences: string;
-  exampleSentencesVi: string;
-  originalVocabulary: string;
-  originalVocabularyBackup: string;
+  text: string;
+  textMean: string;
   audioUrl?: string;
 
   createdAt?: Date;
@@ -38,6 +34,53 @@ export interface IVocabulary {
     level: Level;
   };
 }
+
+export interface IApiVocabulary {
+  _id?: any;
+  id?: string;
+  vocabulary: string;
+  translatedVi: string;
+  partsOfSpeech: string;
+  pronunciation: string;
+  definitionEn?: string;
+  definitionVi?: string;
+  exampleSentences: string;
+  exampleSentencesVi: string;
+  originalVocabulary?: string;
+  originalVocabularyBackup?: string;
+  audioUrl?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  cycle?: {
+    countStudy: number;
+    lastedStudyDate: Date;
+    nextStudyDate: Date;
+    nextStudyCoefficient: number;
+    level: Level;
+  };
+}
+
+export const mapApiToVoca = (apiVoca: IApiVocabulary): IVocabulary => {
+  return {
+    ...apiVoca,
+    voca: apiVoca.vocabulary,
+    mean: apiVoca.translatedVi,
+    text: apiVoca.exampleSentences,
+    textMean: apiVoca.exampleSentencesVi,
+    partsOfSpeech: apiVoca.partsOfSpeech as IVocabulary["partsOfSpeech"],
+  };
+};
+
+export const mapVocaToApi = (voca: IVocabulary): IApiVocabulary => {
+  return {
+    ...voca,
+    vocabulary: voca.voca,
+    translatedVi: voca.mean,
+    exampleSentences: voca.text,
+    exampleSentencesVi: voca.textMean,
+    partsOfSpeech: voca.partsOfSpeech,
+  };
+};
 
 export type IText = z.infer<typeof TextSchema>;
 
@@ -57,15 +100,11 @@ export interface IUser {
 export const vocaTest = {
   _id: "any",
   pronunciation: "ˈiːmˌəʊdʒi",
-  exampleSentences: "The message ended with a smiling emoji.",
-  definitionVi:
-    "biểu tượng cảm xúc kỹ thuật số, thường được sử dụng trong giao tiếp điện tử, điển hình là để thể hiện cảm xúc, ý tưởng hoặc đối tượng",
-  definitionEn:
-    "a digital image or icon used in electronic communication, typically to express an emotion, idea, or object",
-  exampleSentencesVi: "Tin nhắn kết thúc bằng một biểu tượng cảm xúc cười.",
-  originalVocabulary: "emoji",
+  text: "The message ended with a smiling emoji.",
+  textMean: "Tin nhắn kết thúc bằng một biểu tượng cảm xúc cười.",
   partsOfSpeech: "noun",
-  vocabulary: "emoji",
+  voca: "emoji",
+  mean: "biểu tượng cảm xúc",
   createdAt: new Date(),
   updatedAt: new Date(),
 };

@@ -35,7 +35,7 @@ export default function Exercise({ vocabulary }: IProps) {
   return (
     <div className="md:max-w-1/2 flex flex-col gap-4 p-4 mx-auto border-2 border-gray-200 rounded-lg m-4">
       <div className="flex justify-end">
-        <TextToSpeech text={vocabulary.exampleSentences} />
+        <TextToSpeech text={vocabulary.text} />
       </div>
       <div>{getExrcise()}</div>
       {step !== "meaning" && <NextButton setStep={setStep} />}

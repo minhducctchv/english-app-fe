@@ -121,7 +121,6 @@ export default function Vocabulary({
   const handleAdd = async () => {
     if (validateVoca()) return;
     setLoadingAddBtn(true);
-    voca.originalVocabularyBackup = voca.originalVocabulary;
     voca.audioUrl = "";
     create(voca)
       .then(() => {
@@ -181,52 +180,27 @@ export default function Vocabulary({
       className={`p-4 rounded shadow-md flex flex-col gap-4 overflow-y-auto ${childClassName}`}
     >
       <Row
-        label="Original Vocabulary"
-        value={voca.originalVocabulary}
-        field="originalVocabulary"
+        label="Vocabulary"
+        value={voca.voca}
+        field="voca"
         updateVoca={updateVoca}
         nodeValue={
           <div className="text-center font-medium text-xl">
-            {voca.originalVocabulary}
+            {voca.voca}
             <span className="italic !text-sm ml-3">({voca.partsOfSpeech})</span>
           </div>
         }
       />
       <Row
-        label="Definition (EN)"
-        value={voca.definitionEn}
-        field="definitionEn"
-        updateVoca={updateVoca}
-        nodeValue={
-          <div className="p-4 rounded-md border border-dashed border-1 border-blue-700">
-            {voca.definitionEn}
-          </div>
-        }
-      />
-      <Row
-        label="Definition (VI)"
-        value={voca.definitionVi}
-        field="definitionVi"
-        updateVoca={updateVoca}
-        nodeValue={
-          <div className="p-4 rounded-md border border-dashed border-1 border-gray-500">
-            {voca.definitionVi}
-          </div>
-        }
-      />
-      <Row
         label="VI"
-        value={voca.translatedVi}
-        field="translatedVi"
+        value={voca.mean}
+        field="mean"
         updateVoca={updateVoca}
         nodeValue={
           <div className="flex items-center justify-center gap-4 font-medium text-lg text-blue-600">
-            <div>{voca.translatedVi}</div>
+            <div>{voca.mean}</div>
             <div>
-              <BtnAudio
-                voca={voca.originalVocabularyBackup}
-                audioUrl={voca.audioUrl}
-              />
+              <BtnAudio voca={voca.voca} audioUrl={voca.audioUrl} />
             </div>
           </div>
         }
@@ -235,14 +209,14 @@ export default function Vocabulary({
         <Collapse.Panel key="1" header="Sentence example">
           <Row
             label="Example sentences"
-            value={voca.exampleSentences}
-            field="exampleSentences"
+            value={voca.text}
+            field="text"
             updateVoca={updateVoca}
           />
           <Row
             label="Example sentences (VI)"
-            value={voca.exampleSentencesVi}
-            field="exampleSentencesVi"
+            value={voca.textMean}
+            field="textMean"
             updateVoca={updateVoca}
           />
         </Collapse.Panel>

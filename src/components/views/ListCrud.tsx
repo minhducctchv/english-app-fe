@@ -62,14 +62,14 @@ export default function ListCrud() {
     debounce((value) => {
       setFilter((val) => ({ ...val, search: value }));
     }, 1000), // 1000ms = 1 second
-    []
+    [],
   );
 
   const columns: ColumnsType<IVocabulary> = [
     {
       title: "Vocabulary",
-      dataIndex: "originalVocabulary",
-      key: "originalVocabulary",
+      dataIndex: "voca",
+      key: "voca",
       render: (val, record) => {
         return (
           <>
@@ -86,18 +86,13 @@ export default function ListCrud() {
       dataIndex: "audio",
       key: "audio",
       render: (_val, record) => {
-        return (
-          <BtnAudio
-            voca={record.originalVocabularyBackup}
-            audioUrl={record.audioUrl}
-          />
-        );
+        return <BtnAudio voca={record.voca} audioUrl={record.audioUrl} />;
       },
     },
     {
       title: "Translated (Vi)",
-      dataIndex: "translatedVi",
-      key: "translatedVi",
+      dataIndex: "mean",
+      key: "mean",
     },
     {
       title: "Pronunciation",

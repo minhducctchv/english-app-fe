@@ -7,7 +7,7 @@ interface IProps {
   vocabulary: IVocabulary;
 }
 export default function VocaExerciceNormal({ vocabulary }: IProps) {
-  const { vocabulary: voca, partsOfSpeech } = vocabulary;
+  const { voca, partsOfSpeech } = vocabulary;
   return (
     <div className="m-4">
       <div className="space-y-3 mb-8">
@@ -30,16 +30,14 @@ export default function VocaExerciceNormal({ vocabulary }: IProps) {
           <div>
             <div className="text-xs text-muted-foreground">Word</div>
             <DontShowText partsOfSpeech={partsOfSpeech}>
-              <span className="text-base font-medium">
-                {vocabulary.vocabulary}
-              </span>
+              <span className="text-base font-medium">{vocabulary.voca}</span>
             </DontShowText>
           </div>
 
           <div>
             <div className="text-xs text-muted-foreground">Meaning</div>
             <DontShowText partsOfSpeech={partsOfSpeech}>
-              <span className="text-base">{vocabulary.definitionVi}</span>
+              <span className="text-base">{vocabulary.mean}</span>
             </DontShowText>
           </div>
         </div>
@@ -57,10 +55,7 @@ export default function VocaExerciceNormal({ vocabulary }: IProps) {
           </div>
         )}
       </div>
-      <FillInTheBlanks
-        context={vocabulary.exampleSentences || ""}
-        text={voca}
-      />
+      <FillInTheBlanks context={vocabulary.text || ""} text={voca} />
     </div>
   );
 }

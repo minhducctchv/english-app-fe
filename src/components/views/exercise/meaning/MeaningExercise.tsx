@@ -42,7 +42,7 @@ export default function MeaningExerciseEasy(props: IProps) {
               partOfSpeechColors[vocabulary.partsOfSpeech]
             } text-base font-semibold px-3 py-1`}
           >
-            {vocabulary.vocabulary}
+            {vocabulary.voca}
           </Tag>
         </div>
 
@@ -52,7 +52,7 @@ export default function MeaningExerciseEasy(props: IProps) {
             Original Context:
           </h3>
           <p className="text-sm bg-muted p-3 rounded-md italic">
-            {vocabulary.exampleSentences}
+            {vocabulary.text}
           </p>
         </div>
 
@@ -78,12 +78,12 @@ export default function MeaningExerciseEasy(props: IProps) {
             </Button>
           </div>
 
-          {showAnswer > 0 && vocabulary.definitionVi && (
+          {showAnswer > 0 && vocabulary.mean && (
             <div className="bg-blue-50 border border-blue-200 p-4 rounded-md">
               {showAnswer >= 1 && (
                 <>
                   <p className="text-base leading-relaxed">
-                    {vocabulary.exampleSentencesVi}
+                    {vocabulary.textMean}
                   </p>
                 </>
               )}
@@ -91,14 +91,14 @@ export default function MeaningExerciseEasy(props: IProps) {
                 <>
                   <hr className="my-2" />
                   <p className="text-base leading-relaxed font-medium w-full text-center uppercase">
-                    {vocabulary.definitionVi}
+                    {vocabulary.mean}
                   </p>
                 </>
               )}
             </div>
           )}
           <div className="w-full flex items-center justify-center mt-4">
-            <TypingText text={vocabulary.vocabulary} />
+            <TypingText text={vocabulary.voca} />
           </div>
         </div>
       </div>

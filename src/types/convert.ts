@@ -14,39 +14,29 @@ export type IWordSchema = z.infer<typeof WordSchema>;
 
 export function convertVocabularyWithSentence(
   vocabularyWithSentence: IVocabularyWithSentence,
-  originalVocabulary: string,
   vocabulary: string,
-  sentences: string
+  sentences: string,
 ): IVocabulary {
   return {
-    vocabulary: vocabulary,
-    translatedVi: vocabularyWithSentence.vocabularyTranslatedVi,
+    voca: vocabulary,
+    mean: vocabularyWithSentence.vocabularyTranslatedVi,
     partsOfSpeech: vocabularyWithSentence.partsOfSpeech,
     pronunciation: vocabularyWithSentence.pronunciation,
-    definitionEn: vocabularyWithSentence.definitionEn,
-    definitionVi: vocabularyWithSentence.definitionVi,
-    exampleSentences: sentences,
-    exampleSentencesVi: vocabularyWithSentence.sentencesTranslatedVi,
-    originalVocabulary: originalVocabulary,
-    originalVocabularyBackup: originalVocabulary,
+    text: sentences,
+    textMean: vocabularyWithSentence.sentencesTranslatedVi,
   };
 }
 
 export function convertSingleVocabulary(
   singleVocabulary: ISingleVocabulary,
-  originalVocabulary: string,
-  vocabulary: string
+  vocabulary: string,
 ): IVocabulary {
   return {
-    vocabulary: vocabulary,
-    translatedVi: singleVocabulary.vocabularyTranslatedVi,
+    voca: vocabulary,
+    mean: singleVocabulary.vocabularyTranslatedVi,
     partsOfSpeech: singleVocabulary.partsOfSpeech,
     pronunciation: singleVocabulary.pronunciation,
-    definitionEn: singleVocabulary.definitionEn,
-    definitionVi: singleVocabulary.definitionVi,
-    exampleSentences: singleVocabulary.exampleSentences,
-    exampleSentencesVi: singleVocabulary.exampleSentencesVi,
-    originalVocabulary: originalVocabulary,
-    originalVocabularyBackup: originalVocabulary,
+    text: singleVocabulary.exampleSentences,
+    textMean: singleVocabulary.exampleSentencesVi,
   };
 }

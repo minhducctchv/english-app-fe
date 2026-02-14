@@ -7,7 +7,7 @@ interface IProps {
   vocabulary: IVocabulary;
 }
 export default function VocaExerciseEasy({ vocabulary }: IProps) {
-  const { vocabulary: voca, partsOfSpeech } = vocabulary;
+  const { voca, partsOfSpeech } = vocabulary;
   return (
     <div className="m-4">
       <div className="space-y-3">
@@ -29,16 +29,14 @@ export default function VocaExerciseEasy({ vocabulary }: IProps) {
           <div>
             <div className="text-xs text-muted-foreground">Word</div>
             <DontShowText partsOfSpeech={partsOfSpeech}>
-              <span className="text-base font-medium">
-                {vocabulary.vocabulary}
-              </span>
+              <span className="text-base font-medium">{vocabulary.voca}</span>
             </DontShowText>
           </div>
 
           <div>
             <div className="text-xs text-muted-foreground">Meaning</div>
             <DontShowText partsOfSpeech={partsOfSpeech}>
-              <span className="text-base">{vocabulary.definitionVi}</span>
+              <span className="text-base">{vocabulary.mean}</span>
             </DontShowText>
           </div>
         </div>
@@ -56,15 +54,15 @@ export default function VocaExerciseEasy({ vocabulary }: IProps) {
           </div>
         )}
 
-        {vocabulary.exampleSentences && (
+        {vocabulary.text && (
           <div className="w-full flex justify-center items-center my-8">
             <div>
               <div className="text-xs text-muted-foreground">Context</div>
               <div className="text-lg leading-relaxed">
-                {vocabulary.exampleSentences.includes(vocabulary.vocabulary) ? (
+                {vocabulary.text.includes(vocabulary.voca) ? (
                   <>
-                    {vocabulary.exampleSentences
-                      .split(vocabulary.vocabulary)
+                    {vocabulary.text
+                      .split(vocabulary.voca)
                       .map((part, index, array) => (
                         <span key={index}>
                           {part}
@@ -73,7 +71,7 @@ export default function VocaExerciseEasy({ vocabulary }: IProps) {
                               partsOfSpeech={vocabulary.partsOfSpeech}
                             >
                               <span className="font-medium">
-                                {vocabulary.vocabulary}
+                                {vocabulary.voca}
                               </span>
                             </DontShowText>
                           )}
@@ -81,7 +79,7 @@ export default function VocaExerciseEasy({ vocabulary }: IProps) {
                       ))}
                   </>
                 ) : (
-                  vocabulary.exampleSentences
+                  vocabulary.text
                 )}
               </div>
             </div>
